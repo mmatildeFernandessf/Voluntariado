@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="PT">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galeria</title>
+  <link rel="shortcut icon" href="./images/favicon.png" type="image/png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+    crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+  <nav class="navbar fixed-top">
+    <a href="HelpMates.html" class="logo">
+      <img src="./images/Logo.png" width="232" height="81" class="feature-img"></img>
+    </a>
+    <ul class="nav-menu">
+      <li class="nav-item">
+        <a href="HelpMates.html" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item">
+        <a href="SobreNos.html" class="nav-link">Sobre nós</a>
+      </li>
+      <li class="nav-item">
+        <a href="Oportunidades.html" class="nav-link">Oportunidades</a>
+      </li>
+      <li class="nav-item activeitem">
+        <a href="Projeto.html" class="nav-link">Projeto</a>
+      </li>
+      <li class="nav-item">
+        <a href="Doaçoes.html" class="nav-link">Doações</a>
+      </li>
+      <li class="nav-item">
+        <a href="Contactos.html" class="nav-link">Contactos</a>
+      </li>
+      <li class="nav-item">
+        <a id="Log" href="Login.html" class="nav-link">Login</a>
+      </li>
+    </ul>
+    <div class="hamburguer">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+  </nav>
+
+  <p class="titulo-galeria">OCG - Salvar o Oceano <br> Projeto português com a participação da HelpMates</p>
+  <p class="texto-galeria">Trata-se de um projeto de parceria entre organizações para fortalecer os conhecimentos e
+    boas práticas da conservação dos oceanos e da vida marinha, associada diretamente a esta atividade.
+    Através de ações de educação ambiental, pesquisa científica e projetos de conservação, a OCG busca sensibilizar
+    a população para a importância dos oceanos e mobilizar esforços para sua proteção.</p>
+
+  <div class="contentor">
+    <div id="postGaleria"></div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-left">
+      <img src="images\Logo.png">
+      <p></p>
+      <p>
+        Porque todos podemos ajudar.
+      </p>
+  
+    </div>
+    <ul class="footer-right">
+      <li>
+        <h2>Voluntários</h2>
+  
+        <ul class="box">
+          <li><a href="Oportunidades.html" class="nav-link">Oportunidades</a></li>
+          <li><a href="Doaçoes.html" class="nav-link">Campanhas de doação</a></li>
+          <li><a href="Registo.html" class="nav-link">Criar conta</a></li>
+  
+  
+        </ul>
+      </li>
+      <li>
+        <h2>HelpMates</h2>
+  
+        <ul class="box">
+          <li><a href="Projeto.html" class="nav-link">Projeto</a></li>
+          <li><a href="SobreNos.html" class="nav-link">Sobre nós</a></li>
+        </ul>
+      </li>
+  
+      <li>
+        <h2>Contactos</h2>
+  
+        <ul class="box">
+          <li><i class="bi bi-geo-alt"></i> Azurém, Guimarães</li>
+          <li><i class="bi bi-telephone"></i> 987654321</li>
+          <li><i class="bi bi-envelope-at"></i> helpmatesguimaraes@gmail.com</li>
+        </ul>
+      </li>
+    </ul>
+  
+    <div class="footer-bottom">
+      <p>Todos os direitos reservados &copy;</p>
+    </div>
+  </footer>
+
+  <script src="JS/script.js"></script>
+  <script src="JS\navbar.js"></script>
+ 
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <div class="gtranslate_wrapper">
+    <script src="JS/tradutor.js"></script>
+  </div>
+  <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
+  <script type="text/javascript">
+    let postsGaleria = JSON.parse(localStorage.getItem("Galeria"))
+    console.log()
+    let postsGaleriaHTML = '';
+    let z = 0;
+
+    for (let i = 0; i < postsGaleria.length / 3; i++) {
+      let htmlGaleria = '<div class="row">';
+      for (let j = z; j < z + 3 && j < postsGaleria.length + 1; j++) {
+        let postGaleria = postsGaleria[j];
+        console.log(postGaleria.imagemGaleria);
+        let htmlGaleria2 =
+          '<div class="col-4 image-zoom">' +
+          '<img src="' + postGaleria.imagemGaleria + '" alt="Gallery Image"> ' +
+          '</div>';
+        htmlGaleria += htmlGaleria2;
+      }
+      htmlGaleria += '</div>';
+      postsGaleriaHTML += htmlGaleria
+      z += 3;
+    }
+
+    document.getElementById("postGaleria").innerHTML = postsGaleriaHTML;
+  </script>
+
+
+
+
+
+</body>
+
+<!--FOOTER-->
+
+
+
+</html>

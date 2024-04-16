@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./images/favicon.png" type="image/png">
+    <title>Perfil</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <style>
+            /* Estilos personalizados */
+            .sidebar {
+                margin-bottom: 20px;
+            }
+    
+            .sidebar-button {
+                display: block;
+                width: 75%;
+                margin-bottom: 10px;
+                text-align: center;
+                padding: 5px;
+                border: no;
+                cursor: pointer;
+            }
+    
+            .sidebar-button:last-child {
+                margin-bottom: 20px;
+            }
+    
+            .content {
+                padding: 20px;
+                background-color: #f9f9f9;
+                min-height: 400px;
+            }
+    
+            .hidden {
+                display: none;
+            }
+        </style>
+</head>
+
+<body>
+    <header>
+        <!--   NAVBAR -->
+        <nav class="navbar fixed-top p-0">
+            <a href="HelpMates.html" class="logo">
+                <img src="./images/Logo.png" width="232" height="81" class="feature-img"></img>
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="HelpMates.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="SobreNos.html" class="nav-link">Sobre nós</a>
+                </li>
+                <li class="nav-item">
+                    <a href="Oportunidades.html" class="nav-link">Oportunidades</a>
+                </li>
+                <li class="nav-item">
+                    <a href="Projeto.html" class="nav-link">Projeto</a>
+                </li>
+                <li class="nav-item">
+                    <a href="Doaçoes.html" class="nav-link">Doações</a>
+                </li>
+                <li class="nav-item">
+                    <a href="Contactos.html" class="nav-link">Contactos</a>
+                </li>
+                <li class="nav-item activeitem">
+                    <a id="Log" class="nav-link">Login</a>
+                </li>
+            </ul>
+            <div class="hamburguer">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Informação Pessoal Usuario-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 p-0">
+                <div class="position-relative">
+                    <img class="foto-grande" src="images/imagem voluntariado misssao.jpg">
+                    <div class="text-overlay">
+                        <div class="text-center">Perfil</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <div class="col-lg-3 col-md-4">
+                <!-- Sidebar com os botões -->
+                <div class="sidebar d-flex flex-column align-items-center">
+                    <!-- Botões da barra lateral -->
+                    <button class="btn btn-primary sidebar-button" onclick="showProfile()">Ver Perfil</button>
+                    <button class="btn btn-primary sidebar-button" onclick="showCandidaturas()">Ver Candidaturas</button>
+                    <button class="btn btn-primary sidebar-button" onclick="showDoacoes()">Ver Doações</button>
+                
+                    <!-- Espaçamento entre os botões -->
+                    <div style="height: 100px;"></div>
+                
+                    <!-- Botões "Terminar Sessão" e "Eliminar Conta" -->
+                    <button id="logout-button" class="btn btn-light sidebar-button text-danger" ">Terminar Sessão</button>
+                    <button id="delete-account-button" class="btn btn-light sidebar-button text-danger" ">Eliminar Conta</button>
+                </div> 
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <!-- Container para exibir o conteúdo -->
+                <div class="content">
+                    <!-- Conteúdo do "Meu Perfil" -->
+                    <section id="user-data-container" class="hidden">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <h2>Dados do Utilizador</h2>
+                                <div>
+                                    <label for="name">Nome:</label>
+                                    <p id="display-name"></p>
+                                </div>
+                                <div>
+                                    <label for="username">Username:</label>
+                                    <p id="display-username"></p>
+                                </div>
+                                <div>
+                                    <label for="email">Email:</label>
+                                    <p id="display-email"></p>
+                                </div>
+
+                                <div id="buttons">
+                                    <button id="edit-profile-button" onclick="showEditProfileForm()">Editar Perfil</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Conteúdo do "Ver Candidaturas" -->
+                    <section id="user-marcacao" class="hidden">
+                        <h2>Marcações do utilizador</h2>
+                        <div id="tabela-container"></div>
+                    </section>
+
+                    <!-- Conteúdo do "Ver Doações" -->
+                    <section id="user-doacoes" class="hidden">
+                        <h2>Doações do utilizador</h2>
+                        <div id="tabela-doacoes"></div>
+                    </section>
+
+                    <!-- Conteúdo do "Editar Perfil" -->
+                    <section id="edit-profile-container" class="hidden">
+                        <form id="edit-profile-form">
+                            <h2>Editar Perfil</h2>
+                            <label for="name">Nome:</label>
+                            <input type="text" id="name-input" required>
+                            
+                            <label for="email">Email:</label>
+                            <input type="email" id="email-input" required>
+                            
+                            <label for="password">Senha:</label>
+                            <input type="password" id="password-input" required>
+                            
+                            <button type="button" id="save-changes-button" >Salvar Alterações</button>
+                            <button type="button" id="cancel-edit-button" class="custom-button" onclick="cancelEditProfile()">Cancelar</button>
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- FOOTER-->
+   <footer class="footer">
+        <div class="footer-left">
+          <img src="images\Logo.png">
+          <p></p>
+          <p>
+            Porque todos podemos ajudar.
+          </p>
+    
+        </div>
+        <ul class="footer-right">
+          <li>
+            <h2>Voluntários</h2>
+    
+            <ul class="box">
+              <li><a href="Oportunidades.html" class="nav-link">Oportunidades</a></li>
+              <li><a href="Doaçoes.html" class="nav-link">Campanhas de doação</a></li>
+              <li><a href="Registo.html" class="nav-link">Criar conta</a></li>
+    
+    
+            </ul>
+          </li>
+          <li>
+            <h2>HelpMates</h2>
+    
+            <ul class="box">
+              <li><a href="Projeto.html" class="nav-link">Projeto</a></li>
+              <li><a href="SobreNos.html" class="nav-link">Sobre nós</a></li>
+            </ul>
+          </li>
+    
+          <li>
+            <h2>Contactos</h2>
+    
+            <ul class="box">
+                <li><i class="bi bi-geo-alt"></i> Azurém, Guimarães</li>
+                <li><i class="bi bi-telephone"></i> 987654321</li>
+                <li><i class="bi bi-envelope-at"></i> helpmatesguimaraes@gmail.com</li>
+            </ul>
+          </li>
+        </ul>
+    
+        <div class="footer-bottom">
+          <p>Todos os direitos reservados &copy;</p>
+        </div>
+      </footer>
+
+      <div class="gtranslate_wrapper">
+        <script src="JS/tradutor.js"></script>
+      </div>
+      <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
+
+    <script>
+        // Variáveis globais
+        var userDataContainer = document.getElementById("user-data-container");
+        var editProfileContainer = document.getElementById("edit-profile-container");
+
+        // Funções para mostrar/ocultar o conteúdo ao clicar nos botões da sidebar
+        function showProfile() {
+            hideAllSections();
+            userDataContainer.classList.remove("hidden");
+        }
+
+        function showCandidaturas() {
+            hideAllSections();
+            document.getElementById("user-marcacao").classList.remove("hidden");
+        }
+
+        function showDoacoes() {
+            hideAllSections();
+            document.getElementById("user-doacoes").classList.remove("hidden");
+        }
+
+        function hideAllSections() {
+            var sections = document.querySelectorAll(".content section");
+            sections.forEach(function (section) {
+                section.classList.add("hidden");
+            });
+        }
+
+        // Funções para exibir/ocultar o formulário de edição de perfil
+        function showEditProfileForm() {
+            userDataContainer.classList.add("hidden");
+            editProfileContainer.classList.remove("hidden");
+
+            // Preencher os campos do formulário com os dados do perfil atual
+            var displayName = document.getElementById("display-name").innerText;
+            var displayEmail = document.getElementById("display-email").innerText;
+            document.getElementById("name-input").value = displayName;
+            document.getElementById("email-input").value = displayEmail;
+        }
+
+        function cancelEditProfile() {
+            userDataContainer.classList.remove("hidden");
+            editProfileContainer.classList.add("hidden");
+        }
+
+        window.onload = function () {
+        showProfile();
+        };
+    </script>
+
+    <script src="JS/script.js"></script>
+    <script src="JS\dadosuser.js"></script> 
+    <script src="JS/marcacao.js"></script>
+    <script src="JS/doacoes.js"></script>
+    <script src="JS/navbar.js"></script>
+    <script src="JS/editardadosuser.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
